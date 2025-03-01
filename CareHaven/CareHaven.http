@@ -1,0 +1,6 @@
+@CareHaven_HostAddress = http://localhost:5188
+
+GET {{CareHaven_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
