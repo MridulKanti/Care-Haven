@@ -1,0 +1,39 @@
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-2">
+            <h1 style="text-align: center;">Add Feedback</h1>
+            <div class="form-box border border-light">
+                <form #deep="ngForm" (ngSubmit)="addFeedback()">
+                    <div class="form-group">
+                        <label for="FeedbackText">Feedback<span style="color: red;">*</span></label><br>
+                        <textarea class="form-control border border-add" name="FeedbackText" id="FeedbackText" cols="30" rows="10"
+                            [(ngModel)]="newFeedback.FeedbackText" required></textarea>
+                        <div id="error"
+                            *ngIf="deep.controls['FeedbackText']?.touched &&   deep.controls['FeedbackText']?.invalid">
+                            <div [ngStyle]="{'color':'yellow'}" *ngIf="deep.controls.FeedbackText.errors.required">
+                                *Feedback is
+                                required</div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#submitModal" [disabled]="deep.invalid">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 250px;" role="document">
+        <div class="modal-content">
+            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                <h5 class="modal-title">Successfully Added!</h5>
+            </div>
+            <div class="modal-body d-flex justify-content-center mt-3">
+                <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close" (click)="successForm()">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

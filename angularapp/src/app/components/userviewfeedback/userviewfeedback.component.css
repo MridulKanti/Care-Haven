@@ -1,0 +1,179 @@
+body {
+    font-family: 'Merriweather', serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://github.com/shubhmittal07/JWT_user_Auth/blob/main/background_image_care_Haven02.jpg?raw=true');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    background-image: linear-gradient(to right top, rgba(142, 71, 57, 0.9), rgba(157, 93, 70, 0.9), rgba(172, 115, 86, 0.9), rgba(187, 137, 103, 0.9), rgba(201, 160, 122, 0.8));
+    box-shadow: -9px -8px 30px -19px rgba(0,0,0,0.45), 0px 20px 10px -20px rgba(0,0,0,0.45);
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+h1 {
+    color: white;
+    font-family: 'Merriweather', serif;
+    margin-bottom: 1.5rem;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: white;
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: #C9A07A;
+    box-shadow: none;
+}
+
+.underline {
+    height: 2px;
+    background-color: white;
+    margin-top: -2px;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.table th {
+    background-color: #8E4739; /* Dark brown */
+    color: white;
+}
+
+.table td {
+    background-color: rgba(201, 160, 122, 0.8); /* Light brown */
+    color: white;
+}
+
+.btn-danger {
+    background-color: #d9534f;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-danger:hover {
+    background-color: #c9302c;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #C9A07A;
+    border-right: 8px solid transparent;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(45deg, #C9A07A, #f3f3f3);
+    background-clip: padding-box;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.modal-content {
+    background-color: rgba(201, 160, 122, 0.9); /* Light brown background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+    padding: 1.5rem;
+}
+
+.modal-body p {
+    margin: 0.5rem 0;
+    font-size: 1.2rem; 
+    font-weight: bold; 
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+}
+
+.modal-body p:first-child {
+    font-weight: bold;
+    font-size: 1.5rem; 
+    color: yellow; 
+}
+
+.btn-danger {
+    background-color: #d9534f;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem; /* Increase font size */
+    border-radius: 5px;
+}
+
+.btn-danger:hover {
+    background-color: #c9302c;
+}

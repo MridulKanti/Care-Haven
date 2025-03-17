@@ -1,0 +1,106 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="" style="text-align: center;">Orphanages</h2>
+            <div class="d-flex toggle-Button">
+                <span (click)="toggleView('table')" [ngClass]="{ 'tableView': tableView }" id="table-view-btn">Table
+                    View</span>
+                <span (click)="toggleView('card')" [ngClass]="{ 'tableView': cardView }" id="card-view-btn">Card
+                    View</span>
+            </div>
+            <hr>
+            <div *ngIf="tableView">
+                <input class="form-control" id="myInput" type="search" placeholder="Search.." (keyup)="onKeyUp($event)">
+                <div class="underline"></div>
+                <br>
+                <table class="table table-bordered table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Orphanage Name</th>
+                            <th>Description</th>
+                            <th>Founder</th>
+                            <th>Establishment Date</th>
+                            <th>Status</th>
+                            <th>Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of orphanage; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{item.OrphanageName}}</td>
+                            <td>{{item.Description}}</td>
+                            <td>{{item.Founder}}</td>
+                            <td>{{item.EstablishmentDate | date:'MMMM d, y'}}</td>
+                            <td [ngStyle]="{'color': item.Status === 'Inactive' ? 'red' : 'green'}">{{item.Status}}</td>
+                            <td>
+                                <button [disabled]="item.Status === 'Inactive'" type="submit"
+                                    [ngClass]="item.Status === 'Inactive' ? 'btn btn-secondary' : 'btn btn-success'"
+                                    data-toggle="modal" data-target="#deleteModal"
+                                    (click)="openModal(item.OrphanageId)">
+                                    Donate
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- card layout -->
+            <div *ngIf="cardView">
+                <div class="row">
+                    <div class="col-sm-4" *ngFor="let item of orphanage; let i = index">
+                        <div class="card card-layout mb-2">
+                            <div class="card-body">
+                                <p class="card-text"><b>{{i+1}}.Orphanage Name: </b> {{item.OrphanageName}}</p>
+                                <p class="card-text"><b>Description:</b> {{item.Description}}</p>
+                                <p class="card-text"><b>Founder:</b> {{item.Founder}}</p>
+                                <p class="card-text"><b>Date:</b> {{item.EstablishmentDate | date:'MMMM d, y'}}</p>
+                                <p class="card-text"><b>Status:</b> {{item.Status}}</p>
+                                <button [disabled]="item.Status === 'Inactive'" type="submit"
+                                    [ngClass]="item.Status === 'Inactive' ? 'btn btn-secondary' : 'btn btn-success'"
+                                    data-toggle="modal" data-target="#deleteModal"
+                                    (click)="openModal(item.OrphanageId)">
+                                    Donate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end -->
+        </div>
+    </div>
+    <div id="no-result" style="display: none; text-align: center;"><i class="fa-solid fa-magnifying-glass-chart"></i> No
+        result found...</div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                    <h2 class="modal-title">Donate to Orphanage</h2>
+                </div>
+                <form  #deep="ngForm" >
+                    <h5 class="text-center mt-3" style="color:grey">Donation Amount </h5>
+                    <div class="modal-body d-flex justify-content-center mt-3">
+                        <input type="number" name="donationAmount" [(ngModel)]="donation.Amount" (keyup)="validateAmount()" required >
+                    </div>
+                    <div *ngIf="isAmountValid" class="error-message text-center">Amount should be greater than or equal to 1.</div>
+                
+                <div class="modal-body d-flex justify-content-center mt-3">
+                    <button type="button" class="btn btn-success" (click)="DonateConfirm(selectedOrphanageId) "
+                        data-dismiss="modal" aria-label="Close" [disabled]="this.isAmountValid"       [disabled]="deep.invalid" >Donate</button>
+                    <button type="button" class="btn btn-danger ml-1" data-dismiss="modal" aria-label="Close">Close
+                    </button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <div class="loader-container" *ngIf="loader">
+        <div class="loader"></div>
+    </div>
+    <!-- <div class="text-right">
+        <pagination-controls (pageChange)="page=$event"></pagination-controls>
+    </div> -->
+</div>

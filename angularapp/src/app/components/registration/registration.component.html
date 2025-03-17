@@ -1,0 +1,75 @@
+<body>
+<div class="container" style="padding-top: 5rem;">
+    <div class="row mt-2 mb-2">
+        <div class="col-md-6 offset-3 main-register">
+            <h2 class="text-center mt-3">Registration</h2>
+            <form  #reg="ngForm" (ngSubmit)="registerForm()">
+                <div class="form-group">
+                    <label for="">Name<span class="mandatory">*</span></label>
+                    <input type="text" class="form-control" [(ngModel)]="register.Username" #userName="ngModel" name="Username" id="Username" required>
+                    <div class="underline"></div>
+                    <span class="error-message" *ngIf="isFieldValid(userName)">*Username is required</span>
+                </div>
+                <div class="form-group">
+                    <label for="">Email<span class="mandatory">*</span></label>
+                    <input type="email" class="form-control" [(ngModel)]="register.Email" #email="ngModel" name="Email" id="Email" required email>
+                    <div class="underline"></div>
+                    <div class="error-message" id="error" *ngIf="reg.controls['Email']?.touched && reg.controls.Email.invalid">
+                    <div class="error-message" *ngIf="reg.controls.Email.errors.required">*Email is required</div>
+                    <div class="error-message" *ngIf="reg.controls.Email.errors.email">*Inavlid email format </div>   
+                    <div class="error-message" *ngIf="emailExists">Email already exists!</div>   
+                    </div>
+                    </div>
+                <div class="form-group">
+                    <label for="">Password<span class="mandatory">*</span></label>
+                    <div class="input-container">
+                        <input type="password" class="form-control" [(ngModel)]="register.Password" #password="ngModel" name="Password" id="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}">
+                        <i id="eyeIcon" [class]="isVisible ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'" (click)="togglePasswordVisibility('password')"></i>
+                    </div>
+                    <div class="underline"></div>
+                    <div class="error-message" id="error" *ngIf="reg.controls['Password']?.touched && reg.controls.Password.invalid">
+                        <div class="error-message" *ngIf="reg.controls.Password.errors.required">*Password is required</div> 
+                        <div class="error-message" *ngIf="password.errors?.pattern">*Password must be at least 8 characters long and include at least one digit, one lowercase letter, one uppercase letter, and one special character (@#$%^&+=)</div>
+                    </div>
+        
+                </div>
+
+                <div class="form-group">
+                    <label for="">Confirm Password<span class="mandatory">*</span></label>
+                    <div class="input-container">
+                    <input type="password" class="form-control" [(ngModel)]="confirmPassword" #cPassword="ngModel" name="confirmPassword" id="confirmPassword" required>
+                   <i id="eyeIcon" [class]="isVisible2 ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'" (click)="togglePasswordVisibility('ConfirmPassword')"></i>
+                </div>
+                    <div class="underline"></div>
+                   <span class="error-message" *ngIf="confirmPassword != '' &&(register.Password !== confirmPassword && cPassword.touched)">*Passwords do not match</span>
+                    <span class="error-message" *ngIf="confirmPassword === '' && cPassword.touched">*Confirm Password is required</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Mobile<span class="mandatory">*</span></label>
+                    <input type="text" class="form-control" [(ngModel)]="register.MobileNumber" #mobileNumber="ngModel" name="MobileNumber"
+                    maxlength="10" id="MobileNumber" required pattern="^[0-9]{10}$">
+                    <div class="underline"></div>
+                    <span class="error-message" *ngIf="mobileNumber.errors?.pattern && mobileNumber.touched">*Mobile number must be 10 digits</span>
+                    <span class="error-message" *ngIf="mobileNumber.errors?.required && mobileNumber.touched">*Mobile number is required</span>
+                </div>
+                <div class="form-group">
+                    <label for="">Role<span class="mandatory">*</span></label>
+                    <select name="role" id="role" class="form-control" [(ngModel)]="register.UserRole" #userRole="ngModel" required>
+                        <option value="null" selected disabled>Select a role</option>
+                        <option value="Admin">Admin</option>
+                        <option value="User">User</option>
+                    </select>
+                    <div class="underline"></div>
+                    <span class="error-message" *ngIf="isFieldValid(userRole)">*Role is required</span>
+                </div>
+                <button class="btn btn-success mb-2 form-control" type="submit" [disabled]="reg.invalid">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<div class="loader-container" *ngIf="loader">
+    <div class="loader"></div>
+</div>
+

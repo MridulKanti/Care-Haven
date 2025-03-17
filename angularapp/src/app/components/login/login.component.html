@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-2 mb-2">
+            <div class="col-md-6 offset-3 main-register">
+                <h2 class="text-center mt-3">Login</h2>
+                <form #loginForm="ngForm" (ngSubmit)="login()">
+                    <div class="form-group">
+                        <label for="Email">Email<span class="mandatory">*</span></label>
+                        <input type="email" class="form-control" [(ngModel)]="loginUser.Email" #email="ngModel" name="Email" id="Email" required>
+                        <div class="underline"></div>
+                        <span class="error-message" *ngIf="isFieldValid(email)">*Email is required</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Password<span class="mandatory">*</span></label>
+                        <div class="input-container">
+                            <input type="password" class="form-control" [(ngModel)]="loginUser.Password" #password="ngModel" name="Password" id="Password" required>
+                            <i id="eyeIcon" [class]="isVisible ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'" (click)="togglePasswordVisibility()"></i>
+                        </div>
+                        <div class="underline"></div>
+                        <span class="error-message" *ngIf="isFieldValid(password)">*Password is required</span>
+                    </div>
+                    <button class="btn btn-success mb-2 form-control" type="submit" [disabled]="loginForm.invalid">Login</button>
+                </form>
+                <p class="text-center">Do you have an account? <a routerLink="/register">Register</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="loader-container" *ngIf="loader">
+        <div class="loader"></div>
+    </div>
+</body>
+</html>

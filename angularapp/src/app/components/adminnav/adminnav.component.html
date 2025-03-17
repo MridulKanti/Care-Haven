@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg fixed-top" style="background:#8E4739">
+    <div class="container-fluid">
+        <a class=" navbar-brand d-flex" href="/home">
+            <img src="https://github.com/shubhmittal07/JWT_user_Auth/blob/main/Only_Logo_Care_Haven.png?raw=true" alt="Logo" style="height: 40px;">
+            <h1 style="font-size: 25px; padding-left: 5px; padding-top: 5px;">Care Haven</h1>
+        </a>
+        <button class="navbar-toggler" style="border-color : white;" type="button" data-toggle="collapse" data-target="#adminnavNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="adminnavNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-sm border border-outline-white rounded-pill" style="color : white;"><i class="fa-solid fa-user-tie"></i> {{tempName}}/{{tempRole}}</a>
+                </li>
+                <li class="nav-item ml-1">
+                    <a class="nav-link" style="color : white" routerLink="/home" routerLinkActive="active"><i class="fa-solid fa-house"></i> Home</a>
+                </li>
+                <li class="nav-item dropdown" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
+                    <a class="nav-link dropdown-toggle" style="color : white" id="orphanageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-handshake-angle"></i> Orphanage</a>
+                    <div class="dropdown-menu" aria-labelledby="orphanageDropdown">
+                        <a class="dropdown-item" routerLink="/createorphanage" routerLinkActive="active">Add Orphanage</a>
+                        <a class="dropdown-item" routerLink="/adminvieworphanage" routerLinkActive="active">View Orphanage</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color : white" routerLink="/viewalldonation" routerLinkActive="active"><i class="fa-solid fa-hand-holding-dollar"></i> Donations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color : white" routerLink="/adminviewfeedback" routerLinkActive="active"><i class="fa-solid fa-message"></i> Feedbacks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link logout" data-toggle="modal" data-target="#logoutModal" routerLinkActive="active"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                    <!-- <button class="btn btn-danger bg-white btn-sm mt-1 pl-3 pr-3" style="color : red" data-toggle="modal" data-target="#logoutModal"><i class="fa-solid fa-right-from-bracket"></i> Logout</button> -->
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--Logout Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 350px;" role="document">
+        <div class="modal-content">
+            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                <h5 class="modal-title">Are you sure you want to logout?</h5>
+            </div>
+            <div class="modal-body d-flex justify-content-center mt-3">
+                <a type="button" class="btn btn-danger" data-dismiss="modal" routerLink="/login" (click)="logOut()">Yes, Logout</a>
+                <button type="button" class="btn btn-secondary ml-1" data-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

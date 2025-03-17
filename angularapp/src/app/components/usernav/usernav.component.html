@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg" style="background:#8E4739">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex" href="/home">
+            <img src="https://github.com/shubhmittal07/JWT_user_Auth/blob/main/Only_Logo_Care_Haven.png?raw=true" alt="Logo" style="height: 40px;">
+            <h1 style="font-size: 25px; padding-left: 5px; padding-top: 5px;">Care Haven</h1>
+          </a>
+    <button class="navbar-toggler" style="border-color : white;" type="button" data-toggle="collapse" data-target="#usernavNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="usernavNav">
+        <ul class="navbar-nav ml-auto"> 
+            <li class="nav-item">
+                <a class="nav-link btn btn-sm border border-outline-white rounded-pill" style="color: white"><i class="fa-solid fa-user"></i>  {{tempName}}/{{tempRole}}</a>
+            </li>
+            <li class="nav-item ml-1">
+                <a class="nav-link" style="color : white" routerLink="/home" routerLinkActive="active"><i class="fa-solid fa-house"></i> Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color : white" routerLink="/uservieworphanage" routerLinkActive="active"><i class="fa-solid fa-handshake-angle"></i> Orphanage</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link ml-1" style="color : white" routerLink="/mydonation" routerLinkActive="active"><i class="fa-solid fa-hand-holding-dollar"></i> MyDonations</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" style="color : white" id="feedbackDropdown" role="button"><i class="fa-solid fa-message"></i> Feedback</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" routerLink="/useraddfeedback">Post Feedback</a>
+                    <a class="dropdown-item" routerLink="/userviewfeedback">My Feedbacks</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <!-- <button class="logout" data-toggle="modal" data-target="#logoutModal"><i class="fa-solid fa-right-from-bracket"></i> Logout</button> -->
+                <a class="nav-link logout" data-toggle="modal" data-target="#logoutModal" routerLinkActive="active"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+</nav>
+
+<!--Logout Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 350px;" role="document">
+        <div class="modal-content">
+            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                <h5 class="modal-title">Are you sure you want to logout?</h5>
+            </div>
+            <div class="modal-body d-flex justify-content-center mt-3">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="logOut()">Yes, Logout</button>
+                <button type="button" class="btn btn-secondary ml-1" data-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

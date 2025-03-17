@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="headingCenter mt-3">All Donations</h1>
+            <div class="d-flex toggle-Button">
+                <span (click)="toggleView('table')" [ngClass]="{ 'tableView': tableView }" id="table-view-btn">Table
+                    View</span>
+                <span (click)="toggleView('card')" [ngClass]="{ 'tableView': cardView }" id="card-view-btn">Card
+                    View</span>
+            </div>
+            <div *ngIf="tableView">
+                <input class="form-control" id="myInput" type="search" placeholder="Search here..."
+                    (keyup)="onKeyUp($event)">
+                <div class="underline"></div>
+                <br>
+                <table class="table table-bordered text-center table-hover">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Donor Name</th>
+                            <th>Orphanage Name</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of donations ;let i = index">
+                            <td> {{i+1}} </td>
+                            <td>{{item?.User?.Username}}</td>
+                            <td> {{item?.Orphanage?.OrphanageName}}</td>
+                            <td><i class="fa-solid fa-indian-rupee-sign rupee-icon"></i> {{item?.Amount}}
+                            </td>
+                            <td><i class="fa-solid fa-calendar-days calender-icon"></i> {{item?.DonationDate |date:'MMMM d, y'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- card layout -->
+            <div *ngIf="cardView">
+                <div class="row">
+                    <div class="col-sm-4" *ngFor="let item of donations; let i = index">
+                        <div class="card card-layout mb-2">
+                            <div class="card-body view-donation-user-card">
+                                <p class="card-text"><b>{{i+1}}. Donor Name:</b> {{item?.User?.Username}}</p>
+                                <p class="card-text"><b>Orphanage Name:</b> {{item?.Orphanage?.OrphanageName}}</p>
+                                <p class="card-text"><b>Amount:</b> {{item?.Amount}}</p>
+                                <p class="card-text"><b>Date:</b> {{item?.DonationDate |date:'MMMM d, y'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end -->
+            <div *ngIf="donations.length == 0" style="width:100%; text-align: center;">Oops! No Record Found!</div>
+            <div id="no-result" style="display: none; text-align: center;"><i
+                    class="fa-solid fa-magnifying-glass-chart"></i> No result found...</div>
+        </div>
+    </div>
+</div>
+<div class="loader-container" *ngIf="loader">
+    <div class="loader"></div>
+</div>
+
+<!-- <div class="text-right">
+    <pagination-controls (pageChange)="page=$event"></pagination-controls>
+</div> -->

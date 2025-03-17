@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orphanage Form</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-2 mb-2">
+            <div class="col-md-8 offset-2 main-register">
+                <h2 class="text-center mt-3">{{checkTitle}}</h2>
+                <form #OrphanageForm="ngForm">
+                    <div class="form-group">
+                        <label for="OrphanageName">Orphanage Name<span class="mandatory">*</span></label>
+                        <input class="form-control" type="text" id="OrphanageName" name="OrphanageName"
+                            [(ngModel)]="orphanage.OrphanageName" required #OrphanageName="ngModel">
+                        <div class="underline"></div>
+                        <span class="error-message" *ngIf="isFieldValid(OrphanageName)">*Orphanage Name is Required</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Description">Description<span class="mandatory">*</span></label>
+                        <textarea class="form-control" id="Description" name="Description"
+                            [(ngModel)]="orphanage.Description" required #Description="ngModel">
+                        </textarea>
+                        <div class="underline"></div>
+                        <span class="error-message" *ngIf="isFieldValid(Description)">Description is Required</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Founder">Founder<span class="mandatory">*</span></label>
+                        <input class="form-control" type="text" id="Founder" name="Founder" [(ngModel)]="orphanage.Founder"
+                            required #Founder="ngModel">
+                        <div class="underline"></div>
+                        <span class="error-message" *ngIf="isFieldValid(Founder)">Founder is Required</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Status">Status<span class="mandatory">*</span></label>
+                        <select class="form-control" type="text" id="Status" name="Status" [(ngModel)]="orphanage.Status"
+                            required #Status="ngModel">
+                            <option value="Active" selected>Active </option>
+                            <option value="Inactive">Inactive </option>
+                        </select>
+                        <div class="underline"></div>
+                        <span class="error-message" *ngIf="isFieldValid(Status)">Status is Required</span>
+                    </div>
+
+                    <div class="form-group">
+                        <div *ngIf="isRegister">
+                            <button class="btn btn-success mb-2 form-control" type="submit" data-toggle="modal"
+                                data-target="#SubmitSucces" [disabled]="OrphanageForm.invalid"
+                                (click)="AddOrphanage(OrphanageForm)">Submit</button>
+                        </div>
+                        <div *ngIf="!OrphanageForm.invalid && !isRegister">
+                            <button class="btn btn-success mb-2 form-control" type="submit" data-toggle="modal"
+                                data-target="#SubmitSucces" (click)="editOrphanage()"> Save</button>
+                        </div>
+                    </div>
+
+                    <!-- Popup-- -->
+                    <div class="modal fade" id="SubmitSucces" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body" *ngIf="isRegister">Added Successfully!</div>
+                                <div class="modal-body" *ngIf="!isRegister">Updated Successfully!</div>
+                                <button type="button" class="btn btn-success" data-dismiss="modal"
+                                    routerLink="/adminvieworphanage">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

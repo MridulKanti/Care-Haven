@@ -1,0 +1,68 @@
+body {
+    font-family: 'Merriweather', serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://github.com/shubhmittal07/JWT_user_Auth/blob/main/background_image_care_Haven02.jpg?raw=true');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+}
+
+.container {
+    background-image: linear-gradient(to right top, rgba(142, 71, 57, 0.9), rgba(157, 93, 70, 0.9), rgba(172, 115, 86, 0.9), rgba(187, 137, 103, 0.9), rgba(201, 160, 122, 0.8));
+    text-align: center;
+    margin-top: 0rem;
+    box-shadow: -9px -8px 30px -19px rgba(0,0,0,0.45),
+                0px 20px 10px -20px rgba(0,0,0,0.45);
+    padding: 6rem 20rem;
+    border-radius: 15px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+p {
+    color: white;
+    font-family: "Merriweather", serif;
+    font-weight: 300;
+    font-style: normal;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 15px auto;
+    line-height: 1.6;
+}
+
+#logo {
+    width: 500px;
+    height: 200px;
+    margin-bottom: 20px;
+    border: 2px solid #C9A07A;
+    border-radius: 10px;
+}
+
+
+@media (max-width: 992px) {
+    .container-fluid {
+        padding: 5rem 10rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 5rem 2rem;
+    }
+}

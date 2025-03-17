@@ -1,0 +1,121 @@
+<div class="container" style="padding-top: 5rem; overflow:hidden">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="headingCenter mt-3" style="text-align: center;">Orphanages</h2>
+            <div class="d-flex toggle-Button">
+                <span (click)="toggleView('table')" [ngClass]="{ 'tableView': tableView }" id="table-view-btn">Table
+                    View</span>
+                <span (click)="toggleView('card')" [ngClass]="{ 'tableView': cardView }" id="card-view-btn">Card
+                    View</span>
+            </div>
+            <div *ngIf="tableView">
+                <input class="form-control" id="myInput" type="search" placeholder="Search.." (keyup)="onKeyUp($event)">
+                <div class="underline"></div>
+                <br>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center" style="background-color:#7FA1C3">
+                            <th style="color:white">S.No</th>
+                            <th style="color:white">Orphanage Name</th>
+                            <th style="color:white">Description</th>
+                            <th style="color:white">Founder</th>
+                            <th style="color:white">Establishment Date</th>
+                            <th style="color:white">Status</th>
+                            <th style="color:white">Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of orphanage; let i = index">
+                            <td> {{i+1}} </td>
+                            <td>{{item.OrphanageName}}</td>
+                            <td>{{item.Description}}</td>
+                            <td>{{item.Founder}}</td>
+                            <td>{{item.EstablishmentDate | date:'MMMM d, y'}}</td>
+                            <td>{{item.Status}}</td>
+                            <td>
+                                <div class="d-flex">
+                                    <button type="submit" class="btn btn-success mr-2 "
+                                        (click)="editConfirm(item.OrphanageId)">Edit</button>
+                                    <button class="" id="delete" type="submit" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#deleteModal" (click)="openModal(item.OrphanageId)">Delete </button>
+                                </div>
+                                <div class="mt-2">
+                                    <button type="submit" class="btn btn-light" data-toggle="modal" data-target="#checkModal"
+                                        (click)="openModal(item.OrphanageId)">Check Donation</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- card layout -->
+            <div *ngIf="cardView">
+                <div class="row">
+                    <div class="col-sm-4" *ngFor="let item of orphanage; let i = index">
+                        <div class="card card-layout mb-2" style="height: 350px;">
+                            <div class="card-body">
+                                <p class="card-text"><b>{{i+1}}. Orphanage Name: {{item.OrphanageName}}</b></p>
+                                <p class="card-text"><b>Description:</b> {{item.Description}}</p>
+                                <p class="card-text"><b>Founder:</b> {{item.Founder}}</p>
+                                <p class="card-text"><b>Establishment Date:</b> {{item.EstablishmentDate | date:'MMMM d, y'}}
+                                </p>
+                                <p class="card-text"><b>Status:</b> {{item.Status}}</p>
+                                <div class="d-flex">
+                                    <button type="button" class="btn btn-success mr-2"
+                                        (click)="editConfirm(item.OrphanageId)">Edit</button>
+                                    <button id="delete" type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#deleteModal" (click)="openModal(item.OrphanageId)">Delete </button>
+                                    <button type="button" class="btn btn-light ml-2" data-toggle="modal"
+                                        data-target="#checkModal" (click)="openModal(item.OrphanageId)">Check
+                                        Donation</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end -->
+            <div id="no-result" style="display: none; text-align: center;"><i class="fa-solid fa-magnifying-glass-chart"></i> No
+                result found...</div>
+            </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                <h5 class="modal-title">Are you sure you want to delete?</h5>
+            </div>
+            <div class="modal-body d-flex justify-content-center mt-3">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                    (click)="deleteConfirm(selectedOrphanageId) ">Yes, Delete</button>
+                <button type="button" class="btn btn-secondary ml-1" data-dismiss="modal"
+                    aria-label="Close">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="checkModal" tabindex="-1" role="dialog" aria-labelledby="checkModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                <h5 class="modal-title">Total Donation Amount: {{donationAmount}} </h5>
+            </div>
+            <div class="modal-body d-flex justify-content-center mt-3">
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close"
+                    (click)="resetDonation()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="loader-container" *ngIf="loader">
+    <div class="loader"></div>
+</div>
+<!-- <div id="page" class="text-right">
+    <pagination-controls (pageChange)="page=$event"></pagination-controls>
+</div> -->

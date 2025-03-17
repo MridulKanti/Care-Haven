@@ -1,0 +1,83 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 style="text-align: center;">Donation Details</h1>
+            <div class="d-flex toggle-Button">
+                <span (click)="toggleView('table')" [ngClass]="{ 'tableView': tableView }" id="table-view-btn">Table View</span>
+                <span (click)="toggleView('card')" [ngClass]="{ 'tableView': cardView }"id="card-view-btn">Card View</span>
+            </div>
+            <hr style="color : blue">
+            <div *ngIf="tableView" class="myDonationTable">
+                <input class="form-control" id="myInput" type="search" placeholder="Search.." (keyup)="onKeyUp($event)">
+            <div class="underline"></div>
+            <br>
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="background-color : #7FA1C3;">
+                        <th style="text-align: center; color: white;">S.No</th>
+                        <th style="text-align: center; color : white;">Orphanage Name</th>
+                        <th style="text-align: center; color : white;">Amount</th>
+                        <th style="text-align: center; color : white;">Date</th>
+                        <th style="text-align: center; color : white;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of donations; let i=index">
+                        <td style="text-align: center;"> {{i+1}} </td>
+                        <td style="text-align: center;"> {{item?.Orphanage.OrphanageName}}</td>
+                        <td style="text-align: center;"> {{item?. Amount}}</td>
+                        <td style="text-align: center;"> {{item?.DonationDate | date:'MMMM d, y'}}</td>
+                        <td style="text-align: center;">
+                            <button class="btn btn-info" id="delete" data-toggle="modal" data-target="#deleteModal"
+                                (click)="openModal(item?.OrphanageId)">Show Orphanage</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <!-- card layout -->
+    <div *ngIf="cardView">
+        <div class="row">
+            <div class="col-sm-4" *ngFor="let item of donations; let i = index">
+                <div class="card card-layout mb-2">
+                    <div class="card-body donation-card-body">
+                        <p class="card-text"><b>{{i+1}}.Orphanage Name:</b> {{item?.Orphanage.OrphanageName}}</p>
+                        <p class="card-text"><b>Amount:</b> {{item?. Amount}}</p>
+                        <p class="card-text"><b>Date:</b> {{item?.DonationDate | date:'MMMM d, y'}}</p>
+                        <button class="btn btn-info" id="delete" data-toggle="modal" data-target="#deleteModal"
+                                (click)="openModal(item?.OrphanageId)">Show Orphanage</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end -->
+            <div *ngIf="donations.length == 0" style="width:100%; text-align: center;">Oops! No Record Found!</div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                            <p>Orphanage Details</p>
+                            <p>Orphanage Name: {{orphanage?.OrphanageName ? orphanage?.OrphanageName : '...'}}</p>
+                            <p>Description: {{orphanage?.Description ? orphanage?.Description : '...'}}</p>
+                            <p>Founder: {{orphanage?.Founder ? orphanage?.Founder : '...'}}</p>
+                            <p>Establishment Date: {{(orphanage?.EstablishmentDate | date:'MMMM d, y')? (orphanage?.EstablishmentDate | date:'MMMM d, y'): '...'}}</p>
+                            <p>Status: {{orphanage?.Status ?orphanage?.Status :'...'}}</p>
+                        </div>
+                        <div class="modal-body d-flex justify-content-center mt-3">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"
+                                aria-label="Close">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="no-result" style="display: none; text-align: center;"><i class="fa-solid fa-magnifying-glass-chart"></i> No result found...</div>
+<div class="loader-container" *ngIf="loader">
+    <div class="loader"></div>
+</div>

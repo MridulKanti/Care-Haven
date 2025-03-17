@@ -1,0 +1,81 @@
+<div class="container">
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <h1 class="headingCenter mt-3">Feedback Details</h1>
+        <div class="d-flex toggle-Button">
+            <span (click)="toggleView('table')" [ngClass]="{ 'tableView': tableView }" id="table-view-btn">Table
+                View</span>
+            <span (click)="toggleView('card')" [ngClass]="{ 'tableView': cardView }" id="card-view-btn">Card
+                View</span>
+        </div>
+        <div *ngIf="tableView">
+            <input class="form-control" id="myInput" type="text" placeholder="Search.." (keyup)="onKeyUp($event)">
+        <div class="underline"></div>
+        <br>
+        <table class="table table-bordered text-center table-responsive`">
+            <thead>
+                <tr style="background-color : #7FA1C3;">
+                    <th style="color : white;">S.No</th>
+                    <th style="color : white;">User Name</th>
+                    <th style="color : white;">Feedback</th>
+                    <th style="color : white;">Posted Date</th>
+                    <th style="color : white;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of feedback; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{item?.User?.Username}}</td>
+                    <td>{{item?.FeedbackText}}</td>
+                    <td>{{item?.Date | date:'MMMM d, y'}}</td>
+                    <td>
+                        <button class="btn btn-info" id="delete" data-toggle="modal" data-target="#deleteModal" (click)="openModal(item?.User)">Show Profile</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <!-- card layout -->
+        <div *ngIf="cardView">
+            <div class="row">
+                <div class="col-sm-4" *ngFor="let item of feedback; let i = index">
+                    <div class="card card-layout mb-2">
+                        <div class="card-body admin-view-feedback-card">
+                            <p class="card-text"><b>{{i+1}}. User Name: </b> {{item?.User?.Username}}</p>
+                            <p class="card-text"><b>  Feedback:</b> {{item?.FeedbackText}}</p>
+                            <p class="card-text"><b>  Posted Date:</b> {{item?.Date | date:'MMMM d, y'}}</p>
+                            <button class="btn btn-info" id="delete" data-toggle="modal" data-target="#deleteModal" (click)="openModal(item?.User)">Show Profile</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end -->
+        <div id="no-result" style="display: none; text-align: center;"><i class="fa-solid fa-magnifying-glass-chart"></i> No result found...</div>
+        <div *ngIf="feedback.length == 0" style="width: 100%; text-align: center;">Oops! No Record Found!</div>
+    </div>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                <p>User Details:</p>
+                <p>Email: {{user?.Email}}</p>
+                <p>Username: {{user?.Username}}</p>
+                <p>Mobile Number: {{user?.MobileNumber}}</p>
+            </div>
+            <div class="modal-body d-flex justify-content-center mt-3">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="loader-container" *ngIf="loader">
+    <div class="loader"></div>
+</div>
+
+<!-- <div *ngIf="!noRes" class="text-right">
+    <pagination-controls (pageChange)="page=$event"></pagination-controls>
+</div> -->

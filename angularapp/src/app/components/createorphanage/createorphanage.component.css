@@ -1,0 +1,145 @@
+body {
+    font-family: 'Merriweather', serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://github.com/shubhmittal07/JWT_user_Auth/blob/main/background_image_care_Haven02.jpg?raw=true');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background-image: linear-gradient(to right top, rgba(142, 71, 57, 0.9), rgba(157, 93, 70, 0.9), rgba(172, 115, 86, 0.9), rgba(187, 137, 103, 0.9), rgba(201, 160, 122, 0.8));
+    box-shadow: -9px -8px 30px -19px rgba(0,0,0,0.45), 0px 20px 10px -20px rgba(0,0,0,0.45);
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+h2 {
+    color: white;
+    font-family: 'Merriweather', serif;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    color: white;
+    font-weight: bold;
+}
+
+.mandatory {
+    color: red;
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: #C9A07A;
+    box-shadow: none;
+}
+
+.underline {
+    height: 2px;
+    background-color: white;
+    margin-top: -2px;
+}
+
+.error-message {
+    color: yellow;
+    font-size: 0.9rem;
+}
+
+.btn-success {
+    background-color: #C9A07A;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-success:hover {
+    background-color: #A67C52;
+}
+
+.text-center a {
+    color: #C9A07A;
+    text-decoration: none;
+}
+
+.text-center a:hover {
+    text-decoration: underline;
+}
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999; /* Ensure it is above other content */
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #C9A07A;
+    border-right: 8px solid transparent;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(45deg, #C9A07A, #f3f3f3);
+    background-clip: padding-box;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+select.form-control {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+    border-radius: 0;
+    box-shadow: none;
+    appearance: none; /* Remove default arrow */
+    padding-right: 30px; /* Space for custom arrow */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="white" d="M2 0L0 2h4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 10px;
+}
+
+select.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: #C9A07A;
+    box-shadow: none;
+    outline: none;
+}
+
+select.form-control option {
+    background-color: #8E4739;
+    color: white;
+}
